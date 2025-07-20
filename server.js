@@ -10,12 +10,18 @@ dotenv.config();
 
 const app = express();
 
+app.get('/', (req, res) => {
+  res.send('Event Booking API is running ✅');
+});
+
+
 app.use(express.json());
 
 // DB connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected!'))
   .catch(err => console.error(err));
+  
 
 // ✅ Use routers correctly
 app.use('/api/auth', authRoutes);
