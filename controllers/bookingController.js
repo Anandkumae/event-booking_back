@@ -1,5 +1,5 @@
 const Booking = require('../models/Booking');
-const Event = require('../models/Event');
+const Event = require('../models/event');
 
 exports.bookEvent = async (req, res) => {
   const event = await Event.findById(req.params.eventId);
