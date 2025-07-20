@@ -1,5 +1,11 @@
 const express = require('express');
 const { createEvent, getEvents } = require('../controllers/eventController');
+
+// ✅ Import your middleware
+const authMiddleware = require('../middleware/authMiddleware');
+
+// ✅ Import your model
+const Event = require('../models/Event');
 const { auth, adminOnly } = require('../middleware/authMiddleware');
 
 const router = express.Router();
