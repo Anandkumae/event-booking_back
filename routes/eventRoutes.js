@@ -1,19 +1,20 @@
+
 const express = require('express');
 const router = express.Router();
 
-const { createEvent, getAllEvents, updateEvent, deleteEvent } = require('../controllers/eventController');
+const { getAllEvents, createEvent } = require('../controllers/eventController');
 const authMiddleware = require('../middleware/authMiddleware');
-const isAdmin = require('../middleware/isAdmin'); // ✅ Add this line
+const isAdmin = require('../middleware/isAdmin');
 
-// Public route
-router.get('/', getAllEvents);
+// GET all events
+router.get('/', authMiddleware, getAllEvents);
 
-// Protected (admin only) routes
+// POST create event (admin only)
 router.post('/', authMiddleware, isAdmin, createEvent);
-router.put('/:id', authMiddleware, isAdmin, updateEvent);
-router.delete('/:id', authMiddleware, isAdmin, deleteEvent);
 
 module.exports = router;
+
+
 
 
 
